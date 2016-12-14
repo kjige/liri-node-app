@@ -25,7 +25,6 @@ function getTweets() {
 }
 
 function spotifySearch() {
-
     spotify.search({
         type: 'track',
         query: 'The Sign Ace of Base'
@@ -42,7 +41,23 @@ function spotifySearch() {
     });
 }
 
-
+function omdbAPI() {}
+var title = 'Mr Nobody';
+var url = 'http://www.omdbapi.com/?tomatoes=true&t=' + title;
+request(url, function (error, response, body) {
+    var resp = JSON.parse(body);
+    // console.log(resp);
+    console.log('Title: ' + resp.Title);
+    console.log('Year: ' + resp.Year);
+    console.log('IMDB Rating:' + resp.imdbRating);
+    console.log('Country: ' + resp.Country);
+    console.log('Language: ' + resp.Language);
+    console.log('Plot:' + resp.Plot);
+    console.log('Actors: ' + resp.Actors);
+    console.log('Title: ' + resp.Title);
+    console.log('Rotten Tomatoes Rating: ' + resp.tomatoRating);
+    console.log('Rotten Tomatoes URL: ' + resp.tomatoURL);
+});
 // Make it so liri.js can take in one of the following commands:
 // * `my-tweets`
 
