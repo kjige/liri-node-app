@@ -14,6 +14,7 @@ var url = 'http://www.omdbapi.com/?tomatoes=true&t=' + movieTitle;
 var query;
 var action;
 var randomCheck = false;
+var queryLog;
 var log;
 
 var client = new Twitter({
@@ -73,6 +74,9 @@ function whatSong() {
     }]).then(function (resp) {
         if (resp.songTitle.length > 0) {
             song = resp.songTitle;
+            queryLog = resp.songTitle;
+        } else {
+            queryLog = song;
         }
         spotifySearch();
     });
@@ -85,8 +89,11 @@ function whatMovie() {
         name: 'movieTitle'
     }]).then(function (resp) {
         if (resp.movieTitle.length > 0) {
+            queryLog = resp.movieTitle;
             movieTitle = resp.movieTitle;
             url = 'http://www.omdbapi.com/?tomatoes=true&t=' + movieTitle;
+        } else {
+            queryLog = movieTitle;
         }
         omdbAPI();
     });
@@ -100,6 +107,8 @@ function getTweets() {
         for (var i = 0; i < tweets.length; i++) {
             console.log(tweets[i].text);
         }
+        queryLog = '';
+        logActivity();
     });
 }
 
@@ -117,6 +126,7 @@ function spotifySearch() {
         console.log("Song: " + data.tracks.items[0].name);
         console.log("URL: " + data.tracks.items[0].preview_url);
         console.log("Album: " + data.tracks.items[0].album.name);
+        logActivity();
     });
 }
 
@@ -134,6 +144,7 @@ function omdbAPI() {
         console.log('Title: ' + resp.Title);
         console.log('Rotten Tomatoes Rating: ' + resp.tomatoRating);
         console.log('Rotten Tomatoes URL: ' + resp.tomatoURL);
+        logActivity();
     });
 }
 
@@ -153,7 +164,6 @@ function randomText() {
 }
 
 function logActivity() {
-    fs.writeFile('log.txt', log, 'utf8', function () {
-        log = action + ',' + queryLog;
-    })
+    log = '\n' + action + ',' + queryLog;
+    fs.appendFile('log.txt', log, function () {});
 }
