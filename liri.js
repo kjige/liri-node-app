@@ -11,8 +11,10 @@ var twitterKeys = require('./keys.js');
 var song = 'The Sign Ace of Base';
 var movieTitle = 'Mr Nobody';
 var url = 'http://www.omdbapi.com/?tomatoes=true&t=' + movieTitle;
-var todo = process.argv[2];
+var query;
 var action;
+var randomCheck = false;
+var log;
 
 var client = new Twitter({
     consumer_key: twitterKeys.twitterKeys.consumer_key,
@@ -37,15 +39,57 @@ function checkChoice() {
         getTweets();
         // console.log('yes ' + action);
     } else if (action === 'spotify-this-song') {
-        spotifySearch();
+        if (randomCheck) {
+            song = query;
+            // console.log(song);
+            randomCheck = false;
+            spotifySearch();
+        } else {
+            whatSong();
+        }
         // console.log('yes ' + action);
     } else if (action === 'movie-this') {
-        omdbAPI();
+        if (randomCheck) {
+            movieTitle = query;
+            // console.log(movieTitle);
+            url = 'http://www.omdbapi.com/?tomatoes=true&t=' + movieTitle;
+            randomCheck = false;
+            omdbAPI();
+        } else {
+            whatMovie();
+        }
         // console.log('yes ' + action);
     } else if (action === 'do-what-it-says') {
         randomText();
         // console.log('yes ' + action);
     }
+}
+
+function whatSong() {
+    inquirer.prompt([{
+        type: 'input',
+        message: 'What is the song title and name of artist?',
+        name: 'songTitle'
+    }]).then(function (resp) {
+        if (resp.songTitle.length > 0) {
+            song = resp.songTitle;
+        }
+        spotifySearch();
+    });
+}
+
+function whatMovie() {
+    inquirer.prompt([{
+        type: 'input',
+        message: 'What is the movie title?',
+        name: 'movieTitle'
+    }]).then(function (resp) {
+        if (resp.movieTitle.length > 0) {
+            movieTitle = resp.movieTitle;
+            url = 'http://www.omdbapi.com/?tomatoes=true&t=' + movieTitle;
+        }
+        omdbAPI();
+    });
 }
 
 function getTweets() {
@@ -98,8 +142,18 @@ function randomText() {
         // console.log(data);
         var dataArray = data.split(',');
         action = dataArray[0];
-        song = dataArray[1];
+        query = dataArray[1];
+        // console.log(action);
+        // console.log(query);
+        randomCheck = true;
+        // console.log(randomCheck);
         // console.log(dataArray);
         checkChoice();
     });
+}
+
+function logActivity() {
+    fs.writeFile('log.txt', log, 'utf8', function () {
+        log = action + ',' + queryLog;
+    })
 }
