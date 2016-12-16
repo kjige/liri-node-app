@@ -1,5 +1,59 @@
-spotify-this-song,The Sign Ace of Base
-my-tweets,
-movie-this,Mr Nobody
-movie-this,Saw
-spotify-this-song,starboy
+
+Action chosen: movie-this, query: die hard
+	Title: Die Hard
+	Year: 1988
+	IMDB Rating:8.2
+	Country: USA
+	Language: English, German, Italian
+	Plot:John McClane, officer of the NYPD, tries to save his wife Holly Gennaro and several others that were taken hostage by German terrorist Hans Gruber during a Christmas party at the Nakatomi Plaza in Los Angeles.
+	Actors: Bruce Willis, Bonnie Bedelia, Reginald VelJohnson, Paul Gleason
+	Rotten Tomatoes Rating: 8.4
+	
+Action chosen: spotify-this-song, query: starboy
+	Artist: The Weeknd
+	Song: Starboy
+	URL: https://p.scdn.co/mp3-preview/4d4989da00f8cbee0b054ff9259ef65f62aa0b4a?cid=null
+	Album: Starboy
+
+Action chosen: spotify-this-song, query: slim shady
+	Artist: Eminem
+	Song: The Real Slim Shady
+	URL: https://p.scdn.co/mp3-preview/ad1a8e7b3dce14eb696b138872ddeee9ba7f493b?cid=null
+	Album: The Marshall Mathers LP
+
+Action chosen: my-tweets, query: undefined
+undefined
+	RT @verge: Android Things is Google’s new OS for smart devices https://t.co/M431J0obCe https://t.co/bBJj9g1Jj3
+	RT @nytpolitics: It's official: @realdonaldtrump picks Rex Tillerson, Exxon CEO to be Secretary of State https://t.co/tQVNX63opd
+	RT @TechCrunch: Google launches first developer preview of Android Things, its new IoT platform https://t.co/QSEh4V5u6k by @fredericl
+	RT @TechCrunch: Loom․ai is building an avatar that can capture your personality https://t.co/m74nb2oUxF by @lucas_matney
+	RT @arstechnica: Rick Perry picked to head agency he couldn’t name, but wants to nuke https://t.co/M6KvFeIfEX by @SJvatn
+	RT @ArsTechnicaUK: If you're looking for a new phone, or a Christmas gift here are the #BestSmartphones of 2016 https://t.co/J4sbusvxMS 
+#g…
+	Google Pixel XL International Giveaway @androidauth @duapps https://t.co/SyojyhvL9R
+	RT @HowIBuiltThis: Latest episode of @HowIBuiltThis is out! How Mark Cuban (@mcuban) made billions off a hunch about ... the Internet  http…
+	Google Pixel XL International Giveaway @androidauth #giveaway https://t.co/xafqooSfP0
+	RT @FastCompany: How leaving @Microsoft helped this CEO follow her passion with a startup https://t.co/fCggwfBy7S https://t.co/VkaHZyhVUZ
+	RT @HarvardBiz: The 4 Types of Ineffective Apologies https://t.co/bfkPjFaUgf
+	RT @BBCWorld: Son of tiger whose friendship with goat went viral finds his own animal friend 🐯♥ https://t.co/bhq5Kid9q7
+	⚡️ “Tesla is powering an entire island with solar energy”
+
+https://t.co/rYVs7i3KZ1
+	RT @TechCrunch: Platio turns sidewalks into a solar collectors https://t.co/n0e2ZhykLL by @johnbiggs
+	RT @TechCrunch: 11 awesome gifts for your awesome Dad https://t.co/6YhyUX69Wf by @grg
+	RT @arstechnica: Believe the hype. https://t.co/yhbA1TqH3Z
+	RT @TechCrunch: Big data can't bring objectivity to a subjective world https://t.co/v5e9JxgWky
+	RT @Gizmodo: You can still get a great Apple experience for under $1,300 https://t.co/cPIzbvd9tJ https://t.co/9i7evmulrZ
+	RT @googledevs: Start exploring A.I. by playing with pictures, drawings, music, code, and more at https://t.co/momcjKF3Hm #aiexperiments ht…
+	RT @TechCrunch: Hyundai partners with WaiveCar for free, ad-supported EV car sharing https://t.co/qdvS3IZ62L by @etherington https://t.co/M…
+
+Action chosen: movie-this, query: shawshank
+	Title: The Shawshank Redemption
+	Year: 1994
+	IMDB Rating:9.3
+	Country: USA
+	Language: English
+	Plot:Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.
+	Actors: Tim Robbins, Morgan Freeman, Bob Gunton, William Sadler
+	Rotten Tomatoes Rating: 8.2
+	Rotten Tomatoes URL: http://www.rottentomatoes.com/m/shawshank_redemption/
