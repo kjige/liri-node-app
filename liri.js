@@ -24,59 +24,90 @@ var client = new Twitter({
     access_token_secret: twitterKeys.twitterKeys.access_token_secret
 });
 
+// ask user to pick a choice
 inquirer.prompt([{
     type: 'list',
     message: 'choose one',
     choices: ['my-tweets', 'spotify-this-song', 'movie-this', 'do-what-it-says'],
     name: 'choice'
 }]).then(function (resp) {
+
+    // store user's choice
     action = resp.choice;
-    // console.log(action);
     checkChoice();
 
 });
 
+// check what choice did user make
 function checkChoice() {
+
+    // check if user chose 'my-tweets'
     if (action === 'my-tweets') {
         getTweets();
-        // console.log('yes ' + action);
+
+        // check if user chose 'spotify-this-song'
     } else if (action === 'spotify-this-song') {
+
+        // check if user chose 'do-what-it-says'
         if (randomCheck) {
+
+            // assign song title from random.txt
             song = query;
-            // console.log(song);
+
+            // change flag back to false
             randomCheck = false;
             spotifySearch();
         } else {
+
+            // if user did not pick 'do-what-it-says'
             whatSong();
         }
-        // console.log('yes ' + action);
+        // run getTweets function if user chose 'my-tweets'
     } else if (action === 'movie-this') {
+
+        // check if user chose 'do-what-it-says'
         if (randomCheck) {
+
+            // assign movie title from random.txt
             movieTitle = query;
-            // console.log(movieTitle);
+
+            // make url for API call
             url = 'http://www.omdbapi.com/?tomatoes=true&t=' + movieTitle;
+
+            // change flag back to false
             randomCheck = false;
             omdbAPI();
         } else {
+
+            // if user did not pick 'do-what-it-says'
             whatMovie();
         }
-        // console.log('yes ' + action);
+
+        // check if user chose 'do-what-it-says'
     } else if (action === 'do-what-it-says') {
         randomText();
-        // console.log('yes ' + action);
     }
 }
 
+// ask user for song title
 function whatSong() {
     inquirer.prompt([{
         type: 'input',
         message: 'What is the song title and name of artist?',
         name: 'songTitle'
     }]).then(function (resp) {
+
+        // check that user did not enter empty query
         if (resp.songTitle.length > 0) {
+
+            // store song title
             song = resp.songTitle;
+
+            // store user query for logging to log.txt
             queryLog = resp.songTitle;
         } else {
+
+            // if user input is empty, use default movie title
             queryLog = song;
         }
         spotifySearch();
@@ -103,6 +134,7 @@ function whatMovie() {
             // make url with user input title
             url = 'http://www.omdbapi.com/?tomatoes=true&t=' + movieTitle;
         } else {
+
             // if user input is empty, use default movie title
             queryLog = movieTitle;
         }
@@ -115,6 +147,8 @@ function getTweets() {
     client.get('statuses/user_timeline', {
         count: '20'
     }, function (error, tweets, response) {
+
+        // var to store tweets
         var summary;
 
         // return error message if error occurs
@@ -128,6 +162,9 @@ function getTweets() {
                 summary += '\n\t' + tweets[i].text;
             }
         }
+
+        // store this statement describing the search parameter to log in log.txt
+        queryLog = 'last 20 tweets';
 
         // display summary
         console.log(summary);
@@ -200,11 +237,21 @@ function omdbAPI() {
     });
 }
 
+// process random.txt and run its commands
 function randomText() {
-    var random = fs.readFile('random.txt', 'utf8', function (err, data) {
+
+    // read random.txt
+    fs.readFile('random.txt', 'utf8', function (err, data) {
+
+        // split the statement using the comma to get command and query
         var dataArray = data.split(',');
+
+        // store command and query
         action = dataArray[0];
         query = dataArray[1];
+        queryLog = dataArray[1];
+
+        // flag indicating user chose 'do-what-it-says'
         randomCheck = true;
         checkChoice();
     });
@@ -212,6 +259,10 @@ function randomText() {
 
 // log activity in log.txt
 function logActivity(summary) {
+
+    // concatenate data into var
     log = '\n\nAction chosen: ' + action + ', query: ' + queryLog + '\n' + summary;
+
+    // append log data to log.txt
     fs.appendFile('log.txt', log, function () {});
 }
